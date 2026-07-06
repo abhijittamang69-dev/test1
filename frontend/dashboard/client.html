@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard | Konjyosom Tech Solutions</title>
+    <link rel="stylesheet" href="/frontend/assets/css/style.css">
+    <link rel="stylesheet" href="/frontend/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/frontend/assets/css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dash-layout">
+        <aside class="dash-sidebar" id="dashSidebar">
+            <div class="dash-sidebar-header">
+                <i class="fas fa-microchip"></i>
+                <span>Konjyosom Tech</span>
+            </div>
+            <nav class="dash-nav">
+                <a href="client.html" class="dash-nav-item active"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="#bookings" class="dash-nav-item" onclick="showTab('bookings')"><i class="fas fa-calendar-check"></i> My Bookings</a>
+                <a href="#quotations" class="dash-nav-item" onclick="showTab('quotations')"><i class="fas fa-file-invoice"></i> My Quotations</a>
+                <a href="/frontend/booking.html" class="dash-nav-item"><i class="fas fa-plus-circle"></i> New Booking</a>
+                <a href="/frontend/quotation.html" class="dash-nav-item"><i class="fas fa-paper-plane"></i> New Quotation</a>
+                <a href="#profile" class="dash-nav-item" onclick="showTab('profile')"><i class="fas fa-user"></i> Profile</a>
+                <a href="#" onclick="logout();return false;" class="dash-nav-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </nav>
+            <div class="dash-sidebar-footer">
+                <p>v1.0.0 | Konjyosom 4</p>
+            </div>
+        </aside>
+
+        <main class="dash-main">
+            <header class="dash-header">
+                <div class="dash-toggle" id="dashToggle"><i class="fas fa-bars"></i></div>
+                <div class="dash-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search bookings, quotations...">
+                </div>
+                <div class="dash-profile">
+                    <div class="dash-profile-info">
+                        <span id="userName">Client</span>
+                        <small id="userRole">Client Account</small>
+                    </div>
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" id="userAvatar">
+                </div>
+            </header>
+
+            <div class="dash-content">
+                <h1 class="dash-title">Welcome back, <span id="welcomeName">Client</span>!</h1>
+                <p class="dash-subtitle">Here's an overview of your service requests and quotations.</p>
+
+                <div class="dash-stats">
+                    <div class="stat-card">
+                        <div class="stat-card-icon blue"><i class="fas fa-calendar-check"></i></div>
+                        <div class="stat-card-info"><h3 id="totalBookings">0</h3><p>Total Bookings</p></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon green"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-card-info"><h3 id="completedBookings">0</h3><p>Completed</p></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon orange"><i class="fas fa-file-invoice"></i></div>
+                        <div class="stat-card-info"><h3 id="totalQuotations">0</h3><p>Quotations</p></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon red"><i class="fas fa-clock"></i></div>
+                        <div class="stat-card-info"><h3 id="pendingCount">0</h3><p>Pending</p></div>
+                    </div>
+                </div>
+
+                <div class="dash-grid">
+                    <div class="dash-card">
+                        <div class="dash-card-header">
+                            <h3><i class="fas fa-calendar-check" style="color:var(--secondary);margin-right:8px;"></i>Recent Bookings</h3>
+                            <a href="/frontend/booking.html" class="btn-primary" style="padding:6px 14px;font-size:12px;"><i class="fas fa-plus"></i> New</a>
+                        </div>
+                        <div class="dash-card-body">
+                            <div class="dash-table-wrap">
+                                <table class="data-table" id="bookingsTable">
+                                    <thead><tr><th>ID</th><th>Service</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-card-header">
+                            <h3><i class="fas fa-bell" style="color:var(--accent);margin-right:8px;"></i>Recent Activity</h3>
+                        </div>
+                        <div class="dash-card-body">
+                            <ul class="activity-list" id="activityList">
+                                <li><div class="activity-icon green"><i class="fas fa-check"></i></div><div class="activity-content"><p>Welcome to Konjyosom Tech Solutions!</p><small>Just now</small></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-card" style="margin-top:25px;">
+                    <div class="dash-card-header">
+                        <h3><i class="fas fa-file-invoice" style="color:var(--secondary);margin-right:8px;"></i>My Quotations</h3>
+                        <a href="/frontend/quotation.html" class="btn-primary" style="padding:6px 14px;font-size:12px;"><i class="fas fa-plus"></i> New</a>
+                    </div>
+                    <div class="dash-card-body">
+                        <div class="dash-table-wrap">
+                            <table class="data-table" id="quotationsTable">
+                                <thead><tr><th>ID</th><th>Category</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/frontend/assets/js/main.js"></script>
+    <script src="/frontend/assets/js/api.js"></script>
+    <script src="/frontend/assets/js/auth.js"></script>
+    <script src="/frontend/assets/js/booking.js"></script>
+    <script src="/frontend/assets/js/quotation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const { user } = checkAuth();
+            if (!user.name) { window.location.href = '/frontend/login.html'; return; }
+            if (user.role !== 'client') { window.location.href = user.role + '.html'; return; }
+
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('welcomeName').textContent = user.name;
+
+            const bookings = Store.get('bookings').filter(b => b.userId === user.id);
+            const quotes = Store.get('quotations').filter(q => q.userId === user.id);
+
+            document.getElementById('totalBookings').textContent = bookings.length;
+            document.getElementById('completedBookings').textContent = bookings.filter(b => b.status === 'completed').length;
+            document.getElementById('totalQuotations').textContent = quotes.length;
+            document.getElementById('pendingCount').textContent = bookings.filter(b => b.status === 'pending').length;
+        });
+
+        document.getElementById('dashToggle').addEventListener('click', () => {
+            document.getElementById('dashSidebar').classList.toggle('active');
+        });
+
+        function showTab(tab) {
+            // Scroll to section
+            const el = document.getElementById(tab + 'Table') || document.querySelector('[id*="' + tab + '"]');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

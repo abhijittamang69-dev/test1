@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "name": "konjyosomtech-frontend",
+  "builds": [
+    {
+      "src": "frontend/**/*.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/", "dest": "/frontend/index.html" },
+    { "src": "/about", "dest": "/frontend/about.html" },
+    { "src": "/services", "dest": "/frontend/services.html" },
+    { "src": "/service-details", "dest": "/frontend/service-details.html" },
+    { "src": "/contact", "dest": "/frontend/contact.html" },
+    { "src": "/booking", "dest": "/frontend/booking.html" },
+    { "src": "/quotation", "dest": "/frontend/quotation.html" },
+    { "src": "/dashboard/client", "dest": "/frontend/dashboard/client.html" },
+    { "src": "/dashboard/admin", "dest": "/frontend/dashboard/admin.html" },
+    { "src": "/dashboard/technician", "dest": "/frontend/dashboard/technician.html" },
+    { "src": "/admin", "dest": "/admin-panel/dashboard.html" },
+    { "src": "/admin/bookings", "dest": "/admin-panel/bookings.html" },
+    { "src": "/admin/quotations", "dest": "/admin-panel/quotations.html" },
+    { "src": "/admin/technicians", "dest": "/admin-panel/technicians.html" },
+    { "src": "/admin/assign-work", "dest": "/admin-panel/assign-work.html" },
+    { "src": "/admin/reports", "dest": "/admin-panel/reports.html" },
+    { "src": "/tech", "dest": "/technician-panel/dashboard.html" },
+    { "src": "/tech/jobs", "dest": "/technician-panel/jobs.html" },
+    { "src": "/tech/job-details", "dest": "/technician-panel/job-details.html" },
+    { "src": "/tech/upload-report", "dest": "/technician-panel/upload-report.html" }
+  ]
+}
